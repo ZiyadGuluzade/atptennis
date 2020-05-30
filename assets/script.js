@@ -5,9 +5,11 @@ const cards = document.querySelectorAll('.player-card');
 let cardIsFlipped = false;
 let firstCard;
 let secondCard;
+let boardLock = false;
 
 // creating event listener
 function flipTheCard() {
+  if(boardLock) return;
   this.classList.add('flip');
 
   if(!cardIsFlipped) {
@@ -37,9 +39,11 @@ function disableMatchingCards() {
 
 // flips cards back if they don't match
 function flipBacktheCards() {
+  boardLock = true;
   setTimeout(() => {
     firstCard.classList.remove('flip');
     secondCard.classList.remove('flip');
+    boardLock = false;
   }, 900);
 }
 
