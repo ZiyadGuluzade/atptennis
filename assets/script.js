@@ -2,7 +2,7 @@
 const cards = document.querySelectorAll('.player-card');
 
 // storing cards
-let flipped = false;
+let cardIsFlipped = false;
 let firstCard;
 let secondCard;
 
@@ -10,28 +10,38 @@ let secondCard;
 function flipTheCard() {
   this.classList.add('flip');
 
-  if(!flipped) {
+  if(!cardIsFlipped) {
     // first click
-    flipped = true;
+    cardIsFlipped = true;
     firstCard = this;
-  } else {
-    // second click
-    flipped = false;
-    secondCard = this;
+    return;
   }
+    // second click
+    cardIsFlipped = false;
+    secondCard = this;
+  
+  // checking if the cards match
+  matchCheck();
+} 
 
-  // matching the cards
-  if(firstCard.dataset.player === secondCard.dataset.player) {
-    // matching cards  
-    firstCard.removeEventListener('click', flipTheCard);
-    secondCard.removeEventListener('click', flipTheCard);
-  } else {
-    // remove 'flip' class if cards don't match
-    setTimeout(() => {
+// checks if card do or don't match
+function matchCheck() {
+  return firstCard.dataset.player === secondCard.dataset.player ? disableMatchingCards() : flipBacktheCards();
+}
+
+// disables cards if they match
+function disableMatchingCards() {
+  firstCard.removeEventListener('click', flipTheCard);
+  secondCard.removeEventListener('click', flipTheCard);
+}
+
+// flips cards back if they don't match
+function flipBacktheCards() {
+  setTimeout(() => {
     firstCard.classList.remove('flip');
     secondCard.classList.remove('flip');
-  }, 500);
+  }, 900);
 }
-}
+
 // add event listener to every card
 cards.forEach(card => card.addEventListener('click', flipTheCard));
