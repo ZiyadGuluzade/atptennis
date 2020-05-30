@@ -1,0 +1,26 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	height: 100vh;
+	background: #e0d856;
+}
+
+img {
+	width: 100px;
+}
+
+section.atp-game {
+	border: 2px solid green;
+}
+.player-card {
+	border: 2px solid orange;
+}
+
+.front,
+.back {
+	border: 2px solid blue;
+}
