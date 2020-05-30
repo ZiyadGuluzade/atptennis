@@ -1,3 +1,4 @@
+
 // selecting all cards
 const cards = document.querySelectorAll('.player-card');
 
@@ -19,7 +20,6 @@ function flipTheCard() {
     return;
   }
     // second click
-    cardIsFlipped = false;
     secondCard = this;
   
   // checking if the cards match
@@ -35,6 +35,7 @@ function matchCheck() {
 function disableMatchingCards() {
   firstCard.removeEventListener('click', flipTheCard);
   secondCard.removeEventListener('click', flipTheCard);
+  reset();
 }
 
 // flips cards back if they don't match
@@ -43,9 +44,22 @@ function flipBacktheCards() {
   setTimeout(() => {
     firstCard.classList.remove('flip');
     secondCard.classList.remove('flip');
-    boardLock = false;
+    reset();
   }, 900);
 }
+
+function reset() {
+  [cardIsFlipped, boardLock] = [false, false];
+  [firstCard, secondCard] = [null, null];
+}
+
+// immediately assign a random number to every card
+(function shuffle() {
+  cards.forEach(card => {
+    let random = Math.floor(Math.random() * 30);
+    card.style.order = random;
+  })
+})();
 
 // add event listener to every card
 cards.forEach(card => card.addEventListener('click', flipTheCard));
