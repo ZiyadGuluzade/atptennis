@@ -32,17 +32,20 @@ h1.welcome {
 
 a.start {
 	width: 200px;
-	height: 30px;
-	font-size: 20px;
-	border: 1px solid #00ccc9;
-	color: #00ccc9;
+	height: 50px;
+	font-size: 30px;
+	padding: 5px;
+	text-align: center;
+	border: 2px solid #004e98;
+	color: #004e98;
 	border-radius: 10px;
 	background: transparent;
+	text-decoration: none;
 }
 
-button.start:hover {
-	background: #00ccc9;
-	color: black;
+a.start:hover {
+	background: #004e98;
+	color: white;
 }
 
 /* game board */
@@ -91,4 +94,11 @@ section.atp-game {
 
 .player-card.flip {
 	transform: rotateY(180deg);
+}
+
+@media (max-width: 768px) {
+	.player-card {
+		width: calc(30% - 6px);
+		height: 200px;
+	}
 }
